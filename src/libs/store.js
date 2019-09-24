@@ -1,4 +1,4 @@
-import { createBrowserHistory } from 'history'
+import { createBrowserHistory, createHashHistory, createMemoryHistory } from 'history'
 import { applyMiddleware, compose, createStore, combineReducers, bindActionCreators } from 'redux'
 import { routerMiddleware } from 'connected-react-router'
 import createSagaMiddleware from 'redux-saga'
@@ -9,7 +9,22 @@ import { options } from './settings'
 
 import logger from 'redux-logger'
 
-export const history = createBrowserHistory()
+let historyStore
+switch(options.history) {
+  case 'browser':
+    historyStore = createBrowserHistory()
+    break
+  case 'hash':
+    historyStore = createHashHistory()
+    break
+  case 'memory':
+    historyStore = createMemoryHistory()
+    break
+  default:
+    historyStore = createBrowserHistory()
+}
+
+export const history = historyStore
 const sagaMiddleware = createSagaMiddleware()
 const createRootReducer =
   (history, reducers) => combineReducers({
