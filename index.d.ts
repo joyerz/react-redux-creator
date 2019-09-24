@@ -19,18 +19,6 @@ interface ListActions {
   reset: () => void
 }
 
-interface ReturnRedux {
-  actions: Actions,
-  types: Types,
-  reducer: any
-}
-
-interface ReturnListRedux {
-  actions: ListActions,
-  types: Types,
-  reducer: any
-}
-
 interface FnConfig {
   put: Function,
   call: Function,
@@ -65,11 +53,11 @@ type ListSagaConfig = {
 }
 
 type BuildRedux = (actionName: string, defaultData?: object) =>
-  (config: SagaConfig) => ReturnRedux
+  (config: SagaConfig) => Actions
 
 
 type BuildListRedux = (actionName: string, defaultData?: object) =>
-  (config: ListSagaConfig) => ReturnListRedux
+  (config: ListSagaConfig) => Actions
 
 type ConnectReturn = (Component: any) => any
 type Connect = (mapStateToProps, actionsToProps) => ConnectReturn
