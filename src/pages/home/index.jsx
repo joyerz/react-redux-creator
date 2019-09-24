@@ -36,6 +36,9 @@ class Home extends React.Component {
                   background: idx % 2 === 0 ? '#f9f9f9' : '',
                 }}
               >
+
+                <div style={{ fontSize: '14px', borderBottom: '1px #ddd dotted', paddingBottom: '16px' }}> {item.text}</div>
+
                 {item.gif &&
                 <div style={{ paddingBottom: '8px' }}>
                   <img
@@ -44,8 +47,14 @@ class Home extends React.Component {
                   />
                 </div>
                 }
-
-                <div style={{ fontSize: '14px' }}> {item.text}</div>
+                {!item.gif && item.thumbnail &&
+                <div style={{ padding: '16px 0 8px' }}>
+                  <img
+                    src={item.thumbnail}
+                    style={{ maxWidth: '100%' }}
+                  />
+                </div>
+                }
 
                 <div style={{ paddingTop: '8px', color: '#999' }}>
                   用户: {item.username} &nbsp; &nbsp;
