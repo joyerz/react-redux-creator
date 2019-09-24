@@ -63,9 +63,10 @@ import { config } from 'react-redux-creator'
 import fetch from './utils/fetch'
 
 config({
-	fetchMethod: fetch,
+  fetchMethod: fetch, // 全局配置fetch
   history: 'browser', // 默认
   logger: true, // 开启redux-logger
+  autoActions: true, // 是否开启saga自动success和错误的reset
 })
 ```
 
@@ -152,7 +153,7 @@ function appRender() {
 
 
 
-### 使用
+### 使用  [完整示例](https://github.com/joyerz/react-redux-creator/tree/examples) 
 
 **index.jsx（entry）**
 
@@ -294,4 +295,4 @@ export default connect(
 ```
 
 
-### [完整示例](https://github.com/joyerz/react-redux-creator/tree/examples) 
+
