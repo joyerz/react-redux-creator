@@ -1,46 +1,13 @@
 {
-  "name": "react-redux-creator",
-  "version": "0.0.8",
-  "description": "redux helper to create redux actions & reducers with Immutable(seamless-immutable)",
+  "name": "testor",
+  "version": "1.0.0",
   "main": "index.js",
-  "typings": "index.d.ts",
-  "files": [
-    "dist",
-    "index.d.ts"
-  ],
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --config ./build/webpack.build.js",
-    "buildDev": "webpack --config ./build/webpack.build.development.js",
-    "example": "webpack-dev-server --config ./build/webpack.config.example.js --history-api-fallback --inline"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/joyerz/react-redux-creator.git"
-  },
-  "keywords": [
-    "react-redux-creator",
-    "creator",
-    "create",
-    "redux",
-    "helper"
-  ],
-  "author": "joyer zhong",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/joyerz/react-redux-creator/issues"
+  "scripts": {
+    "start": "webpack-dev-server --config ./build/webpack.config.js --history-api-fallback --inline"
   },
-  "homepage": "https://github.com/joyerz/react-redux-creator#readme",
   "dependencies": {
-    "co": "^4.6.0",
-    "connected-react-router": "^6.5.2",
-    "history": "^4.10.1",
-    "react-redux": "^7.1.1",
-    "redux": "^4.0.4",
-    "redux-actions": "^2.6.5",
-    "redux-logger": "^3.0.6",
-    "redux-saga": "^1.0.5",
-    "seamless-immutable": "^7.1.4"
+    "react-redux-creator": "^0.0.7"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",
