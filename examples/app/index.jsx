@@ -1,10 +1,11 @@
 import React from 'react'
-import { companyListRedux } from './redux'
+import { companyAddRedux, companyListRedux } from './redux'
 import * as d from '../../src/index'
 
 class App extends React.Component {
   componentDidMount() {
     this.props.actionList()
+    // this.props.actionAdd({ type: 'company'})
   }
 
   render() {
@@ -20,6 +21,7 @@ export default d.default.connect(
     }
   },
   {
-    actionList: (page, limit, params) => companyListRedux.actions.start(),
+    actionList: (page, limit, params) => companyListRedux.start(),
+    actionAdd: (params) => companyAddRedux.start(params),
   },
 )(App)

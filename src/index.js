@@ -1,17 +1,14 @@
 import { buildRedux, buildListRedux } from './libs/helper'
-// import withSaga, { init, allSagas } from './withSaga'
-import connectSagas, { initFetch } from './libs/connectSagas'
-import { history, myConnect } from './libs/store'
+import config from './libs/settings'
+import connectSagas from './libs/connectSagas'
+import { myConnect } from './libs/store'
 import Provider from './libs/provider'
 
 export default {
-  buildRedux,
-  buildListRedux,
-  initFetch: initFetch, // 初始化fetch方法
-  buildReduxConnectSaga: connectSagas(buildRedux),
-  buildListReduxConnectSaga: connectSagas(buildListRedux),
-  history,
+  buildRedux: connectSagas(buildRedux),
+  buildListRedux: connectSagas(buildListRedux),
   connect: myConnect,
   Provider,
+  config,
 }
 

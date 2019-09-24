@@ -5,6 +5,7 @@ import createSagaMiddleware from 'redux-saga'
 import { all } from 'redux-saga/effects'
 import { connectRouter } from 'connected-react-router'
 import { connect } from 'react-redux'
+import { options } from './settings'
 
 import logger from 'redux-logger'
 
@@ -17,16 +18,20 @@ const createRootReducer =
   })
 
 export default function configureStore(initState, reducers, sagas) {
+  const middleWare = [
+    sagaMiddleware,
+    routerMiddleware(history), // for dispatching history actions
+  ]
+  if (options.logger) {
+    middleWare.push(logger)
+  }
+
   const store = createStore(
     // createRootReducer(history), // root reducer with router state
     createRootReducer(history, reducers),
     initState,
     compose(
-      applyMiddleware(
-        sagaMiddleware,
-        routerMiddleware(history), // for dispatching history actions
-        logger,
-      ),
+      applyMiddleware(...middleWare),
     ),
   )
   sagaMiddleware.run(function* rootSaga(getState) {

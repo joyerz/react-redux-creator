@@ -8,7 +8,10 @@ import fetch from './utils/fetch'
 import routes from './routes'
 const Provider = d.default.Provider
 
-d.default.initFetch(fetch)
+d.default.settings({
+  fetchMethod: fetch,
+  logger: false,
+})
 
 function appRender() {
   const containerElement = document.getElementById('app')

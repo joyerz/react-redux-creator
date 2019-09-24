@@ -1,11 +1,10 @@
 {
   "name": "react-redux-creator",
-  "version": "0.0.1",
+  "version": "0.0.8",
   "description": "redux helper to create redux actions & reducers with Immutable(seamless-immutable)",
   "main": "index.js",
   "typings": "index.d.ts",
   "files": [
-    "src",
     "dist",
     "index.d.ts"
   ],
@@ -17,10 +16,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/joyerz/redux-actions-creator.git"
+    "url": "git+https://github.com/joyerz/react-redux-creator.git"
   },
   "keywords": [
-    "redux-actions-creator",
+    "react-redux-creator",
     "creator",
     "create",
     "redux",
@@ -29,10 +28,11 @@
   "author": "joyer zhong",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/joyerz/redux-actins-creator/issues"
+    "url": "https://github.com/joyerz/react-redux-creator/issues"
   },
-  "homepage": "https://github.com/joyerz/redux-actions-creator#readme",
+  "homepage": "https://github.com/joyerz/react-redux-creator#readme",
   "dependencies": {
+    "co": "^4.6.0",
     "connected-react-router": "^6.5.2",
     "history": "^4.10.1",
     "react-redux": "^7.1.1",

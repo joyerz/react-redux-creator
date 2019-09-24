@@ -1,11 +1,10 @@
 import * as d from '../../src/index'
-import fetch from '../utils/fetch'
-d.default.initFetch(fetch)
 
-export const companyAddRedux = d.default.buildReduxConnectSaga('companyAdd')({
+export const companyAddRedux = d.default.buildRedux('companyAdd')({
   onResult: () => 'hello'
 })
-export const companyListRedux = d.default.buildListReduxConnectSaga('companyList' )({
+
+export const companyListRedux = d.default.buildRedux('companyList' )({
   url: '/api/user/login/password?name=1',
   method: 'POST',
   data: {
@@ -14,14 +13,13 @@ export const companyListRedux = d.default.buildListReduxConnectSaga('companyList
   headers: {
     call: 'ddd'
   },
-  onResult: (data, payload) => {
-    // console.log(data)
+  onResult: function*(data, payload, config) {
+    console.log(config)
     // return data
   },
-  onAfter: function* (data, payload, sagaActions, actions, allActions) {
-    console.log(allActions)
-    yield sagaActions.put(allActions['companyAdd'].start())
-    // console.log(data.substring(0, 10), payload)
+  onAfter: function* (data, payload, config) {
+    const { getAction, effects } = config
+    yield effects.put(getAction('companyAdd').start())
   },
   onError: (err) => console.log('onError', err)
 })

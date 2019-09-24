@@ -1,22 +1,20 @@
 import { put, call, takeLatest, select, delay } from 'redux-saga/effects'
 import { obj2params, underScoreToCamel } from './common'
-// import { combineReducers } from 'redux'
-export let fetchNetwork = null
-export const initFetch = (f) => fetchNetwork = f
+import { options } from './settings'
 
 // 常规sagas的操作
-const sagaActions = {
+const effects = {
   put,
-  call,
-  select,
-  delay,
+  call
 }
 
 // 全局的redux actions
-let allActions = {}
+const allActions = {}
 export let sagas = []
 export let reducers = {}
 
+// 获取全局的action
+const getAction = (actionName) => allActions[actionName]
 /**
  * 创建reduce时自动关联saga
  */
@@ -30,7 +28,7 @@ export default reduxer => (...args) => {
   return conf => {
     const watch = createWatcher(redux, conf)
     sagas.push(watch)
-    return redux
+    return redux.actions
   }
 }
 
@@ -42,14 +40,23 @@ export default reduxer => (...args) => {
  */
 function* createWatcher(redux, conf) {
   yield takeLatest(redux.types.START, function* ({ payload }) {
-
     conf = conf || {}
     let { url, data, method, headers = {}, onResult, onAfter, onError, fetch } = conf
+
+    const callbackConfig = {
+      ...effects,
+      getAction: getAction,
+      getState: getState,
+    }
+
     try {
       // url处理
-      url = typeof url === 'function' ? url(payload) : url
+      url = typeof url === 'function' ? yield url(payload, callbackConfig) : url
       method = method ? method.toUpperCase() : 'GET'
 
+      if (typeof data === 'function') {
+        data = yield data(payload, callbackConfig)
+      }
       if (method === 'GET' && data) {
         url += url.indexOf('?') === -1 ? '?' : '&'
         url += obj2params(data)
@@ -57,12 +64,9 @@ function* createWatcher(redux, conf) {
 
       let result
       // fetch方法是否定义
-      fetchNetwork = fetch ? fetch : fetchNetwork
-      if (!fetchNetwork || !url) {
-        console.log('fetch method does not assign!')
-      } else {
-        // fetch
-        result = yield call(fetchNetwork, {
+      const fetchMethod = fetch ? fetch : options.fetchMethod
+      if (fetchMethod && url) {
+        result = yield call(fetchMethod, {
           url,
           method,
           data,
@@ -72,7 +76,7 @@ function* createWatcher(redux, conf) {
 
       // data handler
       if (onResult) {
-        const fallbackResult = yield call(onResult, result, payload, sagaActions, redux.actions, allActions)
+        const fallbackResult = yield call(onResult, result, payload, callbackConfig)
         result = fallbackResult || result
       }
 
@@ -80,15 +84,23 @@ function* createWatcher(redux, conf) {
 
       // after data handled callback
       if (onAfter) {
-        yield call(onAfter, result, payload, sagaActions, redux.actions, allActions)
+        yield call(onAfter, result, payload, callbackConfig)
       }
     } catch (err) {
       yield put(redux.actions.reset())
 
       // error handler
       if (onError) {
-        yield call(onError, err, payload, sagaActions, redux.actions, allActions)
+        yield call(onError, err, payload, callbackConfig)
       }
     }
   })
 }
+
+const getState = function*(child) {
+  const get = state => state[child]
+  return yield select(get)
+}
+
+
+

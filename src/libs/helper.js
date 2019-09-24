@@ -13,6 +13,7 @@ export const buildRedux = (actionName, defaultData = {}) => {
       error: false,
       success: false,
       params: null,
+      data: {},
       ...defaultData,
     })
 
@@ -21,7 +22,7 @@ export const buildRedux = (actionName, defaultData = {}) => {
   const ERROR = `${actionName}_ERROR`
   const RESET = `${actionName}_REST`
 
-  const start = createAction(START, (params = null) => params)
+  const start = createAction(START, (params = null) => ({params}))
   const reset = createAction(RESET)
   const success = createAction(SUCCESS, data => ({ data }))
   const error = createAction(ERROR, errorMessage => ({ errorMessage }))
