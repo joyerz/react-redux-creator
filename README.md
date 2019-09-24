@@ -1,4 +1,7 @@
+
+
 # react-redux-creator
+
 集成了react-router, react-redux, redux, redux-actions, redux-saga, seamless-immutable, connected-react-router, 简化了redux/异步处理和路由集成的配置工作，开箱即用
 
 
@@ -56,18 +59,22 @@ config({
 
 
 
+---
+
 
 
 <b>
 Provider 组件</b>
 集成路由
 
-| props     | type                                     | descript    |
+| props     | type                                     | description    |
 | --------- | ---------------------------------------- | ----------- |
 | routes    | React.Component \| () => React.Component | 路由配置    |
 | initState | object(optional)                         | 初始化state |
 
-<i>example:</i>
+<i>
+
+example:</i>
 
 ```javascript
 function appRender() {
@@ -81,7 +88,21 @@ function appRender() {
 
 
 
+---
 
+
+**connect(mapStateToProps, mapActionsToProps)(component)**
+主要是简化了mapActionsToProps, 自动合并了bindActionCreators的处理
+
+| argumens          | types             | description                  |
+| ----------------- | ----------------- | ---------------------------- |
+| mapStateToProps   | (state) => object | 同react-redux方法            |
+| mapActionsToProps | object            | 自动合并了bindActionCreators |
+| component         | React.Component   | 同react-redux方法            |
+
+
+
+---
 
 
 
@@ -101,9 +122,11 @@ function appRender() {
 |            | onAfter  | function*(data, payload, callbackConfig) => object     | N        | onResult完成以后执行，<br />在这里可以继续执行其他<br />的异步方法或者发起其他action,<br /><font color=blue>callbackConfig</font> 见下表 |
 |            | onError  | function*(err, payload, callbackConfig) => any         | N        | 错误异常处理，<br /><b>自动调用redux的reset方法</b><br />也可以在这里手动执行error方法<br /><font color=blue>callbackConfig</font> 见下表 |
 
+<font color=#f30>url</font>, <font color=#f30>data</font>, <font color=#f30>onResult</font>, <font color=#f30>onAfetr</font>, <font color=#f30>onError</font> 都可接受function或者generator function, 如果有异步处理，请使用function* 配合yield使用
 
 
 
+---
 
 
 
@@ -136,5 +159,115 @@ config({
 })()
 
 
+```
+
+
+
+---
+
+**routes（src/routes/index.jsx）**
+
+
+
+```javascript
+import * as React from 'react'
+
+import { Route, Switch } from 'react-router' 
+import Home from '../pages/home'
+
+const routes = () => {
+  return (
+    <Switch>
+      <Route exact path="/" component={Home} />
+    </Switch>
+  )
+}
+export default routes
+```
+
+
+
+---
+
+
+
+**redux (src/pages/home/redux.js)**
+
+
+
+```javascript
+import { buildRedux } from 'react-redux-creator'
+import { obj2params } from '../utils/objectHelper'
+
+export const companyAddRedux = buildRedux('companyAdd')({
+  onResult: (data, payload, config) => ({buildRedux})
+})
+
+export const companyListRedux = buildRedux('companyList' )({
+  url: function*(payload, config){
+    const { page, limit } = payload
+    const { getState } = config
+    let state = yield getState('companyList') // e.g. { name: 1, ... }
+    params = obj2params(state.params)
+
+    // 返回请求 '/api/company?page=1&page-size=10&name=1'
+    return `/api/company?page=${page}&page-size=${limit}&${params}` 
+  }
+  onResult: function*(data, payload, config) {
+   	return {
+      ...data,
+      extract: 'extractData'
+    }
+  	// 对网络请求后的数据进行添加额外extract属性
+  },
+  onAfter: function* (data, payload, config) {
+    const { getActio } = config
+		// 发起其他的action
+    yield effects.put(getAction('companyAdd').start()) 
+  },
+  onError: (err) => console.log('Error', err)
+})
+
+// 备注：url, data, onResult, onAfetr, onError 都可接受function或者generator function, 如果有异步处理，请使用function* 配合yield使用
+
+```
+
+
+
+---
+
+
+
+**container (/src/pages/home/index.jsx)**
+
+
+
+```javascript
+import React from 'react'
+import { connect } from 'react-redux-creator'
+import { companyAddRedux, companyListRedux } from './redux'
+
+class Home extends React.Component {
+  componentDidMount() {
+    this.props.actionList()
+  }
+
+  render() {
+    return <div>Hello</div>
+  }
+}
+
+
+export default connect(
+  state => {
+    return {
+      ...state,
+    }
+  },
+  {
+    actionList: (page, limit, params) => companyListRedux.start(),
+    actionAdd: (params) => companyAddRedux.start(params),
+  },
+)(Home)
 ```
 
