@@ -1,19 +1,5 @@
-interface Types {
-  START: string,
-  SUCCESS: string,
-  ERROR: string,
-  RESET: string,
-}
-
 interface Actions {
   start: (params?: object) => any,
-  success: (data?: object) => any,
-  error: (errorMessage: string) => any,
-  reset: () => void
-}
-
-interface ListActions {
-  start: (page: string | number, limit: string | number, params?: object) => any,
   success: (data?: object) => any,
   error: (errorMessage: string) => any,
   reset: () => void
@@ -84,9 +70,6 @@ export const config: Config
 
 // 定义buildRedux
 export const buildRedux: BuildRedux
-
-// 定义buildRedux
-export const buildListRedux: BuildListRedux
 
 // 定义connect
 export const connect: Connect
