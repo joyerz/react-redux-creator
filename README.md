@@ -45,8 +45,7 @@ yarn install react-redux-creator
 ---
 
 
-
-* <a name="config"></a><b>config</b>(options) 
+**<a name="config"></a>config(options)** 
   初始化方法
 
 | options     | type                                                         | description                                                  |
@@ -76,8 +75,7 @@ config({
 
 
 
-* <a name="provider"></a><b>
-  Provider 组件</b>
+<a name="provider"></a>**Provider 组件**
   集成路由
 
 | props     | type                                     | description    |
@@ -103,7 +101,7 @@ function appRender() {
 
 ---
 
-* **<a name="connect"></a>connect(mapStateToProps, mapActionsToProps)(component)**
+**<a name="connect"></a>connect(mapStateToProps, mapActionsToProps)(component)**
   主要是简化了mapActionsToProps, 自动合并了bindActionCreators的处理
 
 | argumens          | types             | description                  |
@@ -118,7 +116,7 @@ function appRender() {
 
 
 
-* <a name="buildRedux"></a><b>buildRedux(actionName, initState)(config)</b> 
+**<a name="buildRedux"></a>buildRedux(actionName, initState)(config)**
   创建redux, 合并reducer以及saga
 
 | arguments  | child    | type                                                   | required | description                                                  |
