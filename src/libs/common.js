@@ -41,3 +41,6 @@ export const underScoreToCamel = (name) =>
       }
     })
     .join('')
+
+export const notEmpty = value => value !== null && value !== undefined && value !== ''
+export const notNullOrUndefiend = value => value !== null && value !== undefined

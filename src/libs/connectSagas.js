@@ -1,5 +1,5 @@
 import { put, call, takeLatest, select, delay } from 'redux-saga/effects'
-import { obj2params, underScoreToCamel } from './common'
+import { obj2params, underScoreToCamel, notNullOrUndefiend } from './common'
 import { options } from './settings'
 
 // 常规sagas的操作
@@ -73,6 +73,7 @@ function* createWatcher(redux, conf) {
       }
 
       let result
+
       // fetch方法是否定义
       const fetchMethod = fetch ? fetch : options.fetchMethod
       if (fetchMethod && url) {
@@ -87,9 +88,14 @@ function* createWatcher(redux, conf) {
       // data handler
       if (onResult) {
         const fallbackResult = yield call(onResult, result, payload, callbackConfig)
-        result = fallbackResult || result
+
+        // 判断fallbackResult不是null, undefined, 即使是空也要采用
+        result = notNullOrUndefiend(fallbackResult)
+          ? fallbackResult
+          : result
       }
 
+      // autoActions
       if (options.autoActions) {
         yield put(redux.actions.success(result))
       }
@@ -99,9 +105,11 @@ function* createWatcher(redux, conf) {
         yield call(onAfter, result, payload, callbackConfig)
       }
     } catch (err) {
+      // autoActions
       if (options.autoActions) {
         yield put(redux.actions.reset())
       }
+
       // error handler
       if (onError) {
         yield call(onError, err, payload, callbackConfig)
