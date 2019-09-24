@@ -3,7 +3,8 @@
 export let options = {
   logger: true, // redux-logger
   fetchMethod: null, // fetch请求
-  history: 'browser', // browser, hash,
+  history: 'browser', // browser, hash, memory
+  autoActions: true
 }
 
 export default function config(opts) {
