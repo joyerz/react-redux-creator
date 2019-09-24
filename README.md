@@ -5,7 +5,8 @@
 
 > 使用redux常常需要创建大量的常量字面量，手动创建actions, 以及相应的reducers进行数据处理，并且redux跟路由配置对新手的的复杂难懂的初始化工作。
 >
-> <font color="#f30">react-redux-creator</font>简化redux的使用流程，降低了新手集成的难度，对于redux的创建，只提供了一个API即buildRedux完成并集成了异步数据请求。提供了Provider组件直接集成react-router。
+> <font color="#f30">react-redux-creator</font>简化redux的使用流程，降低集成的难度，对于redux的创建，只提供了一个API即buildRedux完成并集成了异步数据请求。提供了Provider组件直接集成react-router。
+
 
 
 
@@ -55,6 +56,8 @@ config({
 
 
 
+
+
 <b>
 Provider 组件</b>
 集成路由
@@ -78,6 +81,10 @@ function appRender() {
 
 
 
+
+
+
+
 <b>buildRedux(actionName, initState)(config)</b> 
 创建redux, 合并reducer以及saga
 
@@ -93,6 +100,8 @@ function appRender() {
 |            | onResult | function*(data, payload, callbackConfig) => object     | N        | 当fetch请求完(如果有url，自动fetch后，否则直接到该方法)，数据处理后返回给saga，<b>自动调用redux success方法</b>，回传到reducer 并最终合并到state下。如果方法没有数据，则默认使用原始的data, <br /><font color=blue>callbackConfig</font> 见下表 |
 |            | onAfter  | function*(data, payload, callbackConfig) => object     | N        | onResult完成以后执行，在这里可以继续执行其他的异步方法或者发起其他action,<br /><font color=blue>callbackConfig</font> 见下表 |
 |            | onError  | function*(err, payload, callbackConfig) => any         | N        | 错误异常处理，<br /><b>自动调用redux的reset方法</b><br />也可以在这里手动执行error方法<br /><font color=blue>callbackConfig</font> 见下表 |
+
+
 
 
 
