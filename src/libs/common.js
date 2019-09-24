@@ -41,3 +41,5 @@ export const underScoreToCamel = (name) =>
       }
     })
     .join('')
+
+export const d = () => {}
