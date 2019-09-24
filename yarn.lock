@@ -3749,9 +3749,9 @@ react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1, react-is@^16.9.0:
   version "16.9.0"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.9.0.tgz#21ca9561399aad0ff1a7701c01683e8ca981edcb"
 
-react-redux-creator@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/react-redux-creator/-/react-redux-creator-0.1.0.tgz#5bc14d509df2e2ce3127091675e7b235211539a5"
+react-redux-creator@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/react-redux-creator/-/react-redux-creator-0.1.2.tgz#fcd159fa9673b236f77764504f8947d3faacc65c"
   dependencies:
     co "^4.6.0"
     connected-react-router "^6.5.2"
