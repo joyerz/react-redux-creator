@@ -97,8 +97,8 @@ function appRender() {
 |            | method   | string                                                 | N        | POST, GET, PUT, DELETE...                                    |
 |            | data     | object \| function*(payload, callbackConfig) => object | N        | GET自动转为url search,<br />其他方式则为放body的数据         |
 |            | headers  |                                                        | N        |                                                              |
-|            | onResult | function*(data, payload, callbackConfig) => object     | N        | 当fetch请求完(如果有url，自动fetch后，否则直接到该方法)，数据处理后返回给saga，<b>自动调用redux success方法</b>，回传到reducer 并最终合并到state下。如果方法没有数据，则默认使用原始的data, <br /><font color=blue>callbackConfig</font> 见下表 |
-|            | onAfter  | function*(data, payload, callbackConfig) => object     | N        | onResult完成以后执行，在这里可以继续执行其他的异步方法或者发起其他action,<br /><font color=blue>callbackConfig</font> 见下表 |
+|            | onResult | function*(data, payload, callbackConfig) => object     | N        | 当fetch请求完(如果有url，<br />fetch后，否则直接到该方法)，<br />数据处理后返回给saga，<br /><b>自动调用redux success方法</b>，<br />回传到reducer 并最终合并到<br />state下。如果方法没有数据，<br />则默认使用原始的data。 <br /><font color=blue>callbackConfig</font> 见下表 |
+|            | onAfter  | function*(data, payload, callbackConfig) => object     | N        | onResult完成以后执行，<br />在这里可以继续执行其他<br />的异步方法或者发起其他action,<br /><font color=blue>callbackConfig</font> 见下表 |
 |            | onError  | function*(err, payload, callbackConfig) => any         | N        | 错误异常处理，<br /><b>自动调用redux的reset方法</b><br />也可以在这里手动执行error方法<br /><font color=blue>callbackConfig</font> 见下表 |
 
 
