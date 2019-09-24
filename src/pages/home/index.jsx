@@ -73,6 +73,6 @@ export default connect(
     storyList: state.storyList,
   }),
   {
-    actionList: (page, limit, params) => storyListRedux.start(page, limit, params),
+    actionList: params => storyListRedux.start(params),
   },
 )(Home)
