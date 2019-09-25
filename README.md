@@ -113,23 +113,24 @@ export const companyListRedux = buildRedux('companyList' )({
   url: function*(payload, config){
     const { page, limit } = payload
     const { getState } = config
-    let state = yield getState('companyList') // e.g. { name: 1, ... }
-    params = obj2params(state.params)
+    const state = yield getState('companyList') // e.g. { name: 1, ... }
+    const params = obj2params(state.params)
 
     // 返回请求 '/api/company?page=1&page-size=10&name=1'
     return `/api/company?page=${page}&page-size=${limit}&${params}` 
-  }
+  },
   onResult: function*(data, payload, config) {
-   	return {
+  	// 对网络请求后的数据进行添加额外extract属性
+    return {
       ...data,
       extract: 'extractData'
     }
-  	// 对网络请求后的数据进行添加额外extract属性
   },
   onAfter: function* (data, payload, config) {
-    const { getActio } = config
-		// 发起其他的action
-    yield effects.put(getAction('companyAdd').start()) 
+    const { put, getAction } = config
+	
+	// 发起其他的action
+    yield put(getAction('companyAdd').start()) 
   },
   onError: (err) => console.log('Error', err)
 })
@@ -162,13 +163,11 @@ class Home extends React.Component {
 
 
 export default connect(
-  state => {
-    return {
-      ...state,
-    }
-  },
+  state => ({
+    companyList: state.companyList,
+  }),
   {
-    actionList: (page, limit, params) => companyListRedux.start(),
+    actionList: (params) => companyListRedux.start(params),
     actionAdd: (params) => companyAddRedux.start(params),
   },
 )(Home)
