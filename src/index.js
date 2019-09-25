@@ -2,7 +2,7 @@ import { buildRedux, buildListRedux } from './libs/helper'
 import config from './libs/settings'
 import connectSagas from './libs/connectSagas'
 import { myConnect } from './libs/store'
-import Provider from './libs/provider'
+import Provider, { createStore } from './libs/provider'
 
 export default {
   buildRedux: connectSagas(buildRedux),
@@ -10,5 +10,6 @@ export default {
   connect: myConnect,
   Provider,
   config,
+  createStore,
 }
 

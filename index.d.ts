@@ -81,3 +81,6 @@ export const connect: Connect
 
 // 定义provider
 export const Provider: ProviderT
+
+// 导出createStore，比如在taro中无法使用Provider
+export const createStore: (initState?: object) => object

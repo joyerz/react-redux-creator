@@ -4,8 +4,10 @@ import { ConnectedRouter } from 'connected-react-router'
 import { sagas, reducers } from './connectSagas'
 import configureStore, { history } from './store'
 
+export const createStore = (initState = {}) => configureStore(initState, reducers, sagas)
+
 export default ({ routes, initState = {} }) => {
-  const store = configureStore(initState, reducers, sagas)
+  const store = createStore(initState)
   return (
     <Provider store={store}>
       <ConnectedRouter history={history}>
@@ -14,3 +16,4 @@ export default ({ routes, initState = {} }) => {
     </Provider>
   )
 }
+
