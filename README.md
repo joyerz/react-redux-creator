@@ -210,7 +210,7 @@ import { buildRedux } from 'react-redux-creator'
 import { obj2params } from '../utils/objectHelper'
 
 export const companyAddRedux = buildRedux('companyAdd')({
-  onResult: (data, payload, config) => ({buildRedux})
+  onResult: (data, payload, config) => ({ ..handled data })
 })
 
 export const companyListRedux = buildRedux('companyList' )({
