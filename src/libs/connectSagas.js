@@ -48,7 +48,7 @@ export default reduxer => (...args) => {
 function* createWatcher(redux, conf) {
   yield takeLatest(redux.types.START, function* ({ payload }) {
     conf = conf || {}
-    let { url, data, method, headers = {}, onResult, onAfter, onError, fetch } = conf
+    let { url, data, method, headers = {}, extract = {}, onResult, onAfter, onError, fetch } = conf
 
     const callbackConfig = {
       ...effects,
@@ -82,6 +82,7 @@ function* createWatcher(redux, conf) {
           method,
           data,
           headers,
+          ...extract,
         })
       }
 

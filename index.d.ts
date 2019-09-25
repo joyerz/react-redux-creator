@@ -22,6 +22,8 @@ type SagaConfig = {
   url?: string | PreFunction,
   method?: string,
   data?: object | DataFunction,
+  headers?: object,
+  extract?: object,
   fetch?: FetchFunction,
   onAfter?: HandleFunction,
   onResult?: HandleFunction,

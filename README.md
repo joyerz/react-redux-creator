@@ -46,7 +46,7 @@ npm install react-redux-creator
 
 | options     | type                                                         | description                                                  |
 | ----------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| fetchMethod | (config) => Promise<any><br />config: {<br />    url: string, <br />    method: string, // optional, default "GET"<br />    data: object,  // optional <br />    headers: object, // optional<br />} | 全局fetch方法, <br />通常应用的请求有公共的处理方式，<br />比如针对400等错误的处理，此处定义通用的网络请求fetch方法 |
+| fetchMethod | (config) => Promise<any><br />config: {<br />    url: string, <br />    method: string, // optional, default "GET"<br />    data: object,  // optional <br />    headers: object, // optional<br /> extract: object, // optional<br />} | 全局fetch方法, <br />通常应用的请求有公共的处理方式，<br />比如针对400等错误的处理，此处定义通用的网络请求fetch方法 |
 | logger      | boolean                                                      | 默认"true", 是否开启redux-logger                             |
 | history     | 'browser', 'hash', 'memory'                                  | 默认'browser'路由方式，详细见[history](https://github.com/ReactTraining/history) |
 | autoActions | boolean(optional)                                            | 默认"true", 自动执行success, reset方法                       |
@@ -126,7 +126,8 @@ ReactDOM.render(
 |            | url      | string \| function*(payload, callbackConfig) => string | N        | <font color=#f30>callbackConfig</font> 见下表                |
 |            | method   | string                                                 | N        | POST, GET, PUT, DELETE...                                    |
 |            | data     | object \| function*(payload, callbackConfig) => object | N        | GET自动转为url search,<br />其他方式则为放body的数据         |
-|            | headers  |                                                        | N        |                                                              |
+|            | headers  | object                                                 | N        | 请求headers (传给fetch方法)                                                                  |
+|            | extract  | object                                                 | N        | 请求扩展项 (传给fetch方法)                                                             |
 |            | onResult | function*(data, payload, callbackConfig) => object     | N        | 当fetch请求完(如果有url，<br />fetch后，否则直接到该方法)，<br />数据处理后返回给saga，<br /><b>自动调用redux success方法</b>，<br />回传到reducer 并最终合并到<br />state下。如果方法没有数据，<br />则默认使用原始的data。 <br /><a name="callbackConfig">callbackConfig</a> 见下表 |
 |            | onAfter  | function*(data, payload, callbackConfig) => object     | N        | onResult完成以后执行，<br />在这里可以继续执行其他<br />的异步方法或者发起其他action,<br /><a name="callbackConfig">callbackConfig</a> 见下表 |
 |            | onError  | function*(err, payload, callbackConfig) => any         | N        | 错误异常处理，<br /><b>自动调用redux的reset方法</b><br />也可以在这里手动执行error方法<br /><a name="callbackConfig">callbackConfig</a> 见下表 |
