@@ -1,13 +1,11 @@
 import { createBrowserHistory, createHashHistory, createMemoryHistory } from 'history'
 import { applyMiddleware, compose, createStore, combineReducers, bindActionCreators } from 'redux'
-import { routerMiddleware } from 'connected-react-router'
+import { routerMiddleware, connectRouter } from 'connected-react-router'
 import createSagaMiddleware from 'redux-saga'
 import { all } from 'redux-saga/effects'
-import { connectRouter } from 'connected-react-router'
 import { connect } from 'react-redux'
-import { options } from './settings'
-
 import logger from 'redux-logger'
+import { options } from './settings'
 
 let historyStore
 switch(options.history) {
@@ -42,7 +40,6 @@ export default function configureStore(initState, reducers, sagas) {
   }
 
   const store = createStore(
-    // createRootReducer(history), // root reducer with router state
     createRootReducer(history, reducers),
     initState,
     compose(

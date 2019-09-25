@@ -1,0 +1,69 @@
+{
+  "parser": "babel-eslint",
+  "env": {
+    "es6": true,
+    "node": true,
+    "browser": true,
+    "commonjs": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true,
+      "legacyDecorators": true,
+      "jsx": true
+    }
+  },
+  "settings": {
+    "import/resolver": {
+      "alias": {
+        "map": [
+          ["src", "./src"],
+          ["com", "./src/components"],
+          ["utils", "./src/utils"],
+          ["assets", "./src/assets"],
+          ["conf", "./src/conf"],
+          ["pages", "./src/pages"]
+        ],
+        "extensions": [".js", ".jsx", ".json"]
+      }
+    },
+    "react": {
+      "version": "16.8.6"
+    }
+  },
+  "plugins": ["react", "prettier", "flowtype", "react-hooks"],
+  "rules": {
+    "react/prop-types": 0,
+    "react/display-name": [0],
+    "flowtype/define-flow-type": 1,
+    "flowtype/use-flow-type": 1,
+    "react/jsx-uses-react": "error",
+    "react/jsx-uses-vars": "error",
+    "no-console": "off",
+    "react-hooks/rules-of-hooks": "error", // 检查 Hook 的规则
+    "react-hooks/exhaustive-deps": "warn", // 检查 effect 的依赖
+    // "prettier/prettier": "error",
+    // "indent": ["error", 2],
+    // "no-mixed-spaces-and-tabs": "error",
+    // "camelcase": "error",
+    // "eqeqeq": "warn",
+    // "curly": "error",
+    // "no-undef": "error",
+    "no-unused-vars": "off",
+    // "max-params": "warn",
+    "linebreak-style": [0], // ["error", "unix"],
+    "quotes": ["error", "single"],
+    "no-multiple-empty-lines": [2, { "max": 2 }],
+    "semi": ["error", "never"], //["error", "always"]
+    "import/no-cycle": "off",
+    "import/no-mutable-exports": "off"
+  },
+  "extends": [
+    "airbnb-base",
+    "eslint:recommended",
+    "plugin:react/recommended"
+    //    "plugin:prettier/recommended"
+  ]
+}

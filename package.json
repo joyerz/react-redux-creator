@@ -1,6 +1,6 @@
 {
   "name": "react-redux-creator",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "redux helper to create redux actions & reducers with Immutable(seamless-immutable)",
   "main": "index.js",
   "typings": "index.d.ts",
@@ -12,7 +12,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config ./build/webpack.build.js",
     "buildDev": "webpack --config ./build/webpack.build.development.js",
-    "example": "webpack-dev-server --config ./build/webpack.config.example.js --history-api-fallback --inline"
+    "lint": "./node_modules/.bin/eslint src"
   },
   "repository": {
     "type": "git",
@@ -32,9 +32,12 @@
   },
   "homepage": "https://github.com/joyerz/react-redux-creator#readme",
   "dependencies": {
-    "co": "^4.6.0",
+    "babel-eslint": "^10.0.3",
     "connected-react-router": "^6.5.2",
+    "eslint-loader": "^3.0.0",
     "history": "^4.10.1",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
     "react-redux": "^7.1.1",
     "redux": "^4.0.4",
     "redux-actions": "^2.6.5",
@@ -56,9 +59,14 @@
     "axios": "^0.19.0",
     "babel-loader": "^8.0.6",
     "clean-webpack-plugin": "^2.0.1",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-config-prettier": "^4.2.0",
+    "eslint-import-resolver-alias": "^1.1.2",
+    "eslint-plugin-import": "^2.17.2",
+    "eslint-plugin-prettier": "^3.0.1",
+    "eslint-plugin-react": "^7.12.4",
     "html-webpack-plugin": "^3.2.0",
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0",
     "react-router": "5.0.0",
     "terser-webpack-plugin": "^1.4.1",
     "webpack": "^4.30.0",
