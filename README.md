@@ -40,7 +40,7 @@ npm install react-redux-creator
 - <a href="#buildRedux">buildRedux</a>
 
 
-### <a name="config"></a>config(options)
+### 1. <a name="config"></a>config(options)
 
 初始化方法
 
@@ -68,7 +68,7 @@ config({
 
 
 
-### <a name="provider"></a>Provider 组件
+### 2. <a name="provider"></a>Provider 组件
 
 集成路由
 
@@ -88,7 +88,7 @@ ReactDOM.render(
 ```
 
 
-### <a name="connect"></a>connect(mapStateToProps, mapActionsToProps)(component)
+### 3. <a name="connect"></a>connect(mapStateToProps, mapActionsToProps)(component)
 
 简化了mapActionsToProps, 自动合并了bindActionCreators的处理
 
@@ -100,7 +100,7 @@ ReactDOM.render(
 
 
 
-### <a name="buildRedux"></a>buildRedux(actionName, initState)(config)
+### 4. <a name="buildRedux"></a>buildRedux(actionName, initState)(config)
 
 | arguments  | child    | type                                                   | required | description                                                  |
 | ---------- | -------- | ------------------------------------------------------ | -------- | ------------------------------------------------------------ |
