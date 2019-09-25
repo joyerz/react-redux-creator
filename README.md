@@ -132,7 +132,8 @@ ReactDOM.render(
 |            | onAfter  | function*(data, payload, callbackConfig) => object     | N        | onResult完成以后执行，<br />在这里可以继续执行其他<br />的异步方法或者发起其他action,<br /><a name="callbackConfig">callbackConfig</a> 见下表 |
 |            | onError  | function*(err, payload, callbackConfig) => any         | N        | 错误异常处理，<br /><b>自动调用redux的reset方法</b><br />也可以在这里手动执行error方法<br /><a name="callbackConfig">callbackConfig</a> 见下表 |
 
-**url**, **data**, **onResult**, **onAfter**, **onError** 都可接受function或者generator function, 如果有异步处理，请使用function* 配合yield使用
+**url**, **data**, **onResult**, **onAfter**, **onError** 都可接受function或者generator function, 
+如果有异步处理，请使用function* 配合yield call(function, ...arguments) 或者 yield put(action)使用
 
 #### callbackConfig
 
