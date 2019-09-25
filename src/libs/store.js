@@ -31,10 +31,14 @@ const createRootReducer =
   })
 
 export default function configureStore(initState, reducers, sagas) {
-  const middleWare = [
+  let middleWare = [
     sagaMiddleware,
     routerMiddleware(history), // for dispatching history actions
   ]
+  if (Object.prototype.toString().call(options.middleware) === '[object Array]') {
+    middleWare = [...middleWare, ...options.middleware]
+  }
+
   if (options.logger) {
     middleWare.push(logger)
   }

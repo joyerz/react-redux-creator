@@ -62,6 +62,9 @@ type FetchFunction = (fetch: FetchConfig) => Promise<any>
 interface Settings {
   fetchMethod: FetchFunction,
   logger: boolean,
+  history: 'browser' | 'hash' | 'memory',
+  middleware: Array<any>,
+  autoActions: boolean,
 }
 type Config = (settings: Settings) => void
 

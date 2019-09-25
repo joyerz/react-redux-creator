@@ -4,7 +4,8 @@ export let options = {
   logger: true, // redux-logger
   fetchMethod: null, // fetch请求
   history: 'browser', // browser, hash, memory
-  autoActions: true
+  autoActions: true,
+  middleware: [], // middleware
 }
 
 export default function config(opts) {

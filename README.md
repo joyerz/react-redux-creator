@@ -4,7 +4,7 @@ react-redux-creator
 
 
 
-> 使用redux常常需要创建大量的常量字面量，手动创建actions, 以及相应的reducers进行数据处理，并且redux跟路由配置对新手的的复杂难懂的初始化工作。
+> 使用redux常常需要创建大量的常量字面量，手动创建actions, 以及相应的reducers进行数据处理，并且redux跟路由配置对复杂难懂的初始化工作。
 >
 > <font color="#f30">react-redux-creator</font>简化redux的使用流程，降低集成的难度，对于redux的创建，只提供了一个API即buildRedux完成并集成了异步数据请求。提供了Provider组件直接集成react-router。
 
@@ -48,8 +48,9 @@ npm install react-redux-creator
 | ----------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | fetchMethod | (config) => Promise<any><br />config: {<br />    url: string, <br />    method: string, // optional, default "GET"<br />    data: object,  // optional <br />    headers: object, // optional<br />} | 全局fetch方法, <br />通常应用的请求有公共的处理方式，<br />比如针对400等错误的处理，此处定义通用的网络请求fetch方法 |
 | logger      | boolean                                                      | 默认"true", 是否开启redux-logger                             |
-| history     | 'browser', 'hash', 'memory'                                  | 路由方式，详细见[history](https://github.com/ReactTraining/history) |
-| autoActions | boolean                                                      | 默认"true", 自动执行success, reset方法                       |
+| history     | 'browser', 'hash', 'memory'                                  | 默认'browser'路由方式，详细见[history](https://github.com/ReactTraining/history) |
+| autoActions | boolean(optional)                                            | 默认"true", 自动执行success, reset方法                       |
+| middleware  | Array(optional)                                              | redux中间件                                                |
 
 
 ***example***
