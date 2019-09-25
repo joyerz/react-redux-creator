@@ -242,7 +242,7 @@ export const companyListRedux = buildRedux('companyList' )({
 })
 
 // 备注：url, data, onResult, onAfetr, onError 都可接受function或者generator function, 
-// 如果有异步处理，请使用function* 配合yield使用
+//      如果有异步处理，请使用function* 配合yield call(function, ...arguments) 或者 yield put(action)使用
 
 ```
 
