@@ -32,12 +32,13 @@ npm install react-redux-creator
 
 ## API
 
-**仅4个API**
+**仅4个API, 1个非必要API**
 
 - <a href="#config">config</a>
 - <a href="#provider">Provider</a>
 - <a href="#connect">connect</a>
 - <a href="#buildRedux">buildRedux</a>
+- <a href="#createStore">createStore</a>(optional)
 
 
 ### 1. <a name="config"></a>config(options)
@@ -145,6 +146,9 @@ ReactDOM.render(
 | getState  | (actionName) => State  | 通过actionName获取state节点数据                        |
 
 
+### 5. <a name="createStore"></a>createStore(initState)
+
+- 在taro等框架无法使用提供Provider，可以使用createStore方法来生成store, 集成在项目当中
 
 
 ## 使用 
