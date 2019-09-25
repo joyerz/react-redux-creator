@@ -4302,9 +4302,9 @@ react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1, react-is@^16.9.0:
   version "16.9.0"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.9.0.tgz#21ca9561399aad0ff1a7701c01683e8ca981edcb"
 
-react-redux-creator@^0.1.8:
-  version "0.1.8"
-  resolved "https://registry.yarnpkg.com/react-redux-creator/-/react-redux-creator-0.1.8.tgz#03254b308885e9481a0179c0834e037fefbe553a"
+react-redux-creator@^0.1.9:
+  version "0.1.9"
+  resolved "https://registry.yarnpkg.com/react-redux-creator/-/react-redux-creator-0.1.9.tgz#c96b3bc0f22f14389e014efb665efe960d90a821"
   dependencies:
     connected-react-router "^6.5.2"
     history "^4.10.1"
