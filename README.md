@@ -37,8 +37,10 @@ yarn install react-redux-creator
 
 
 
-## 使用  [完整示例](https://github.com/joyerz/react-redux-creator/tree/examples) 
+## 使用 
 
+[完整示例](https://github.com/joyerz/react-redux-creator/tree/examples)  
+ 
 ### index.jsx(entry)
 
 ```javascript
