@@ -13,7 +13,7 @@ export const storyListRedux = buildRedux('storyList')({
 })
 
 export const storyAddRedux = buildRedux('storyAdd')({
-  onResult: function* () {
+  onResult: () => {
     console.log('storyAdd...')
   },
 })
