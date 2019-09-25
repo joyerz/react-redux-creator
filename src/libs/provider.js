@@ -7,6 +7,7 @@ import configureStore, { history } from './store'
 let store
 export const createStore = (initState = {}) => {
   store = configureStore(initState, reducers, sagas)
+  return store
 }
 
 export default ({ routes, initState = {} }) => {
