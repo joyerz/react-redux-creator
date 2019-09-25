@@ -1,25 +1,19 @@
-
 import '@babel/polyfill'
 
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import { Provider, config } from 'react-redux-creator'
 import fetch from './utils/fetch'
-import routes from './routes'
+import routes from './routes/index'
 
 config({
   fetchMethod: fetch,
   logger: true,
 })
 
+ReactDOM.render(
+  <Provider routes={routes} />,
+  document.getElementById('app'),
+)
 
-function appRender() {
-  const containerElement = document.getElementById('app')
-  ReactDOM.render(
-    <Provider routes={routes} />,
-    containerElement,
-  )
-}
-
-appRender()
 
