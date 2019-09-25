@@ -59,13 +59,10 @@ config({
   history: 'browser', // 路由的history
 })
 
-（function appRender() {
-  const containerElement = document.getElementById('app')
-  ReactDOM.render(
-    <Provider routes={routes} />, {/* 配置路由 */}
-    containerElement,
-  )
-})()
+ReactDOM.render(
+  <Provider routes={routes} />, {/* 配置路由 */}
+  document.getElementById('app'),
+)
 
 
 ```
@@ -115,12 +112,12 @@ export const companyListRedux = buildRedux('companyList' )({
     const { getState } = config
     const state = yield getState('companyList') // e.g. { name: 1, ... }
     const params = obj2params(state.params)
-
+    
     // 返回请求 '/api/company?page=1&page-size=10&name=1'
     return `/api/company?page=${page}&page-size=${limit}&${params}` 
   },
   onResult: function*(data, payload, config) {
-  	// 对网络请求后的数据进行添加额外extract属性
+    // 对网络请求后的数据进行添加额外extract属性
     return {
       ...data,
       extract: 'extractData'
@@ -128,8 +125,8 @@ export const companyListRedux = buildRedux('companyList' )({
   },
   onAfter: function* (data, payload, config) {
     const { put, getAction } = config
-	
-	// 发起其他的action
+    
+    // 发起其他的action
     yield put(getAction('companyAdd').start()) 
   },
   onError: (err) => console.log('Error', err)
