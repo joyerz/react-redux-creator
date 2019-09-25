@@ -34,6 +34,7 @@ config({
 ```
 
 
+
 ## <a name="provider"></a>Provider 组件
 
 集成路由
@@ -53,6 +54,7 @@ ReactDOM.render(
 )
 ```
 
+
 ## <a name="connect"></a>connect(mapStateToProps, mapActionsToProps)(component)
 
 简化了mapActionsToProps, 自动合并了bindActionCreators的处理
@@ -62,6 +64,7 @@ ReactDOM.render(
 | mapStateToProps   | (state) => object | 同react-redux方法            |
 | mapActionsToProps | object            | 自动合并了bindActionCreators |
 | component         | React.Component   | 同react-redux方法            |
+
 
 
 ## <a name="buildRedux"></a>buildRedux(actionName, initState)(config)
