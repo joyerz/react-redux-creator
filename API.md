@@ -47,13 +47,10 @@ config({
 ***example***
 
 ```javascript
-function appRender() {
-  const containerElement = document.getElementById('app')
-  ReactDOM.render(
-    <Provider routes={routes} />, {/* 配置路由 */}
-    containerElement,
-  )
-}
+ReactDOM.render(
+  <Provider routes={routes} />, {/* 配置路由 */}
+  document.getElementById('app'),
+)
 ```
 
 ## <a name="connect"></a>connect(mapStateToProps, mapActionsToProps)(component)
@@ -78,13 +75,13 @@ function appRender() {
 |            | method   | string                                                 | N        | POST, GET, PUT, DELETE...                                    |
 |            | data     | object \| function*(payload, callbackConfig) => object | N        | GET自动转为url search,<br />其他方式则为放body的数据         |
 |            | headers  |                                                        | N        |                                                              |
-|            | onResult | function*(data, payload, callbackConfig) => object     | N        | 当fetch请求完(如果有url，<br />fetch后，否则直接到该方法)，<br />数据处理后返回给saga，<br /><b>自动调用redux success方法</b>，<br />回传到reducer 并最终合并到<br />state下。如果方法没有数据，<br />则默认使用原始的data。 <br /><font color=blue>callbackConfig</font> 见下表 |
-|            | onAfter  | function*(data, payload, callbackConfig) => object     | N        | onResult完成以后执行，<br />在这里可以继续执行其他<br />的异步方法或者发起其他action,<br /><font color=blue>callbackConfig</font> 见下表 |
-|            | onError  | function*(err, payload, callbackConfig) => any         | N        | 错误异常处理，<br /><b>自动调用redux的reset方法</b><br />也可以在这里手动执行error方法<br /><font color=blue>callbackConfig</font> 见下表 |
+|            | onResult | function*(data, payload, callbackConfig) => object     | N        | 当fetch请求完(如果有url，<br />fetch后，否则直接到该方法)，<br />数据处理后返回给saga，<br /><b>自动调用redux success方法</b>，<br />回传到reducer 并最终合并到<br />state下。如果方法没有数据，<br />则默认使用原始的data。 <br /><a name="callbackConfig">callbackConfig</a> 见下表 |
+|            | onAfter  | function*(data, payload, callbackConfig) => object     | N        | onResult完成以后执行，<br />在这里可以继续执行其他<br />的异步方法或者发起其他action,<br /><a name="callbackConfig">callbackConfig</a> 见下表 |
+|            | onError  | function*(err, payload, callbackConfig) => any         | N        | 错误异常处理，<br /><b>自动调用redux的reset方法</b><br />也可以在这里手动执行error方法<br /><a name="callbackConfig">callbackConfig</a> 见下表 |
 
-<font color=#ff3300>url</font>, <font color=#ff3300>data</font>, <font color=#ff3300>onResult</font>, <font color=#ff3300>onAfetr</font>, <font color=#ff3300>onError</font> 都可接受function或者generator function, 如果有异步处理，请使用function* 配合yield使用
+**url**, **data**, **onResult**, **onAfter**, **onError** 都可接受function或者generator function, 如果有异步处理，请使用function* 配合yield使用
 
-### <font color=blue>callbackConfig</font>
+### callbackConfig
 
 | param     | type                   | description                                            |
 | --------- | ---------------------- | ------------------------------------------------------ |
