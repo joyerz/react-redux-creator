@@ -1,5 +1,12 @@
 import * as React from 'react'
 
+type ProviderTProps = {
+  routes: any
+}
+declare class ProviderT extends React.Component<ProviderTProps, any>{
+  new (Props: ProviderTProps): {};
+}
+
 interface Actions {
   start: (params?: object) => any,
   success: (data?: object) => any,
@@ -52,10 +59,6 @@ type BuildListRedux = (actionName: string, defaultData?: object) =>
 type ConnectReturn = (Component: any) => any
 type Connect = (mapStateToProps: Function, actionsToProps: object) => ConnectReturn
 
-interface ProviderT extends React.Component<any, any>{
-  routes: any,
-}
-
 interface FetchConfig {
   url: string,
   method: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'OPTION',
@@ -82,7 +85,7 @@ export const buildRedux: BuildRedux
 export const connect: Connect
 
 // 定义provider
-export const Provider: ProviderT
+export const Provider: typeof ProviderT
 
 // 导出createStore，比如在taro中无法使用Provider
 export const createStore: (initState?: object) => object
