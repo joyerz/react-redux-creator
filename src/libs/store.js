@@ -35,7 +35,7 @@ export default function configureStore(initState, reducers, sagas) {
     sagaMiddleware,
     routerMiddleware(history), // for dispatching history actions
   ]
-  if (Object.prototype.toString().call(options.middleware) === '[object Array]') {
+  if (Object.prototype.toString.call(options.middleware) === '[object Array]') {
     middleWare = [...middleWare, ...options.middleware]
   }
 
