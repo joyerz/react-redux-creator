@@ -1,3 +1,5 @@
+import * as React from 'react'
+
 interface Actions {
   start: (params?: object) => any,
   success: (data?: object) => any,
@@ -48,9 +50,9 @@ type BuildListRedux = (actionName: string, defaultData?: object) =>
   (config: ListSagaConfig) => Actions
 
 type ConnectReturn = (Component: any) => any
-type Connect = (mapStateToProps, actionsToProps) => ConnectReturn
+type Connect = (mapStateToProps: Function, actionsToProps: object) => ConnectReturn
 
-interface ProviderT {
+interface ProviderT extends React.Component<any, any>{
   routes: any,
 }
 
