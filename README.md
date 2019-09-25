@@ -25,7 +25,7 @@ react-redux-creator
 ```terminal
 yarn install react-redux-creator
 # or
-# npm install react-redux-creator
+npm install react-redux-creator
 ```
 
 
