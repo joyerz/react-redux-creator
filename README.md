@@ -32,7 +32,7 @@ yarn install react-redux-creator
 
 ## API
 
-[仅4个API](API.md)
+[仅4个API](./API.md)
 
 
 
