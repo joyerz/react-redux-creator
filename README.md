@@ -102,6 +102,21 @@ ReactDOM.render(
 
 ### 4. <a name="buildRedux"></a>buildRedux(actionName, initState)(config)
 
+返回 *start(params)*, *success(data)*, *reset()*, *error()* 方法以供调用
+
+默认初始化数据
+```javascript
+{
+  loading: false, // 异步加载状态, start()方法后会变true
+  success: false, // 异步成功状态， success()方法后变true
+  error: false, // 错误状态，error()方法后变true
+  params: null, // start(params)方法传入
+  data: null, // success(data)方法传入
+}
+
+// initState可扩展初始化数据
+```
+
 | arguments  | child    | type                                                   | required | description                                                  |
 | ---------- | -------- | ------------------------------------------------------ | -------- | ------------------------------------------------------------ |
 | actionName | -        | string                                                 | Y        | redux的action字面量以及存储在state的数据key                  |
