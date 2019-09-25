@@ -15,35 +15,13 @@
       "jsx": true
     }
   },
-  "settings": {
-    "import/resolver": {
-      "alias": {
-        "map": [
-          ["src", "./src"],
-          ["com", "./src/components"],
-          ["utils", "./src/utils"],
-          ["assets", "./src/assets"],
-          ["conf", "./src/conf"],
-          ["pages", "./src/pages"]
-        ],
-        "extensions": [".js", ".jsx", ".json"]
-      }
-    },
-    "react": {
-      "version": "16.8.6"
-    }
-  },
-  "plugins": ["react", "prettier", "flowtype", "react-hooks"],
+  "plugins": ["react", "prettier"],
   "rules": {
     "react/prop-types": 0,
     "react/display-name": [0],
-    "flowtype/define-flow-type": 1,
-    "flowtype/use-flow-type": 1,
     "react/jsx-uses-react": "error",
     "react/jsx-uses-vars": "error",
     "no-console": "off",
-    "react-hooks/rules-of-hooks": "error", // 检查 Hook 的规则
-    "react-hooks/exhaustive-deps": "warn", // 检查 effect 的依赖
     // "prettier/prettier": "error",
     // "indent": ["error", 2],
     // "no-mixed-spaces-and-tabs": "error",
