@@ -34,27 +34,25 @@ type SagaConfig = {
   headers?: object,
   extract?: object,
   fetch?: FetchFunction,
-  onAfter?: HandleFunction,
+  onAfter?: HandleFunction | any,
   onResult?: HandleFunction,
   onError?: HandleErrorFunction,
 }
 
-type ListSagaConfig = {
+interface SagaConfiguration {
   url?: string | PreFunction,
   method?: string,
   data?: object | DataFunction,
+  headers?: object,
+  extract?: object,
   fetch?: FetchFunction,
-  onAfter?: HandleListFunction,
-  onResult?: HandleListFunction,
-  onError?: HandleErrorFunction,
+  onAfter?: (data: any, payload: any, options: FnConfig) => any
+  onResult?: (data: any, payload: any, options: FnConfig) => any
+  onError?: (err: any, payload: any, options: FnConfig) => any
 }
 
 type BuildRedux = (actionName: string, defaultData?: object) =>
-  (config: SagaConfig) => Actions
-
-
-type BuildListRedux = (actionName: string, defaultData?: object) =>
-  (config: ListSagaConfig) => Actions
+  (config: SagaConfiguration) => Actions
 
 type ConnectReturn = (Component: any) => any
 type Connect = (mapStateToProps: Function, actionsToProps: object) => ConnectReturn

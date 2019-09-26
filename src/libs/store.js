@@ -8,7 +8,7 @@ import logger from 'redux-logger'
 import { options } from './settings'
 
 let historyStore
-switch(options.history) {
+switch (options.history) {
   case 'browser':
     historyStore = createBrowserHistory()
     break
@@ -19,36 +19,43 @@ switch(options.history) {
     historyStore = createMemoryHistory()
     break
   default:
-    historyStore = createBrowserHistory()
+    historyStore = null
 }
 
 export const history = historyStore
+
 const sagaMiddleware = createSagaMiddleware()
+
 const createRootReducer =
   (history, reducers) => combineReducers({
-    router: connectRouter(history),
+    ...(history ? { router: connectRouter(history) } : {}),
     ...reducers,
   })
 
-export default function configureStore(initState, reducers, sagas) {
+const combineMiddleware = () => {
   let middleWare = [
     sagaMiddleware,
-    routerMiddleware(history), // for dispatching history actions
   ]
+  if (history) {
+    middleWare.push(routerMiddleware(history)) // for dispatching history actions
+  }
+
   if (Object.prototype.toString.call(options.middleware) === '[object Array]') {
     middleWare = [...middleWare, ...options.middleware]
   }
-
   if (options.logger) {
     middleWare.push(logger)
   }
+  return compose(
+    applyMiddleware(...middleWare),
+  )
+}
 
+export default function configureStore(initState, reducers, sagas) {
   const store = createStore(
     createRootReducer(history, reducers),
     initState,
-    compose(
-      applyMiddleware(...middleWare),
-    ),
+    combineMiddleware(),
   )
   sagaMiddleware.run(function* rootSaga(getState) {
     yield all(sagas)
@@ -63,6 +70,6 @@ export const myConnect = (mapState, mapPropsObject) => connect(
     {
       ...mapPropsObject,
     },
-    dispatch
+    dispatch,
   ),
 )
