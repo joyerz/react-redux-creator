@@ -1,4 +1,4 @@
-import { applyMiddleware, compose, createStore, combineReducers, bindActionCreators } from 'redux'
+import { applyMiddleware, compose, createStore, combineReducers } from 'redux'
 import createSagaMiddleware from 'redux-saga'
 import { all } from 'redux-saga/effects'
 import logger from 'redux-logger'
@@ -6,7 +6,6 @@ import { reducers, sagas } from './connectSagas'
 import { config } from './settings'
 
 const options = config()
-console.log('o', options)
 
 const sagaMiddleware = createSagaMiddleware()
 
