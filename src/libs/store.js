@@ -5,7 +5,9 @@ import createSagaMiddleware from 'redux-saga'
 import { all } from 'redux-saga/effects'
 import { connect } from 'react-redux'
 import logger from 'redux-logger'
-import { options } from './settings'
+import config  from './settings'
+
+const options = config()
 
 let historyStore
 switch (options.history) {

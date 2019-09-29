@@ -1,6 +1,8 @@
 import { put, call, takeLatest, select, delay } from 'redux-saga/effects'
 import { obj2params, underScoreToCamel, notNullOrUndefiend } from './common'
-import { options } from './settings'
+import config  from './settings'
+
+const options = config()
 
 // 常规sagas的操作
 const effects = {
