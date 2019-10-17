@@ -85,5 +85,8 @@ export const connect: Connect
 // 定义provider
 export const Provider: typeof ProviderT
 
+// history
+export const history: any
+
 // 导出createStore，比如在taro中无法使用Provider
 export const createStore: (initState?: object) => object

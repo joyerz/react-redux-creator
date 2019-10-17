@@ -5,26 +5,29 @@ import createSagaMiddleware from 'redux-saga'
 import { all } from 'redux-saga/effects'
 import { connect } from 'react-redux'
 import logger from 'redux-logger'
-import config  from './settings'
+import config from './settings'
 
-const options = config()
 
-let historyStore
-switch (options.history) {
-  case 'browser':
-    historyStore = createBrowserHistory()
-    break
-  case 'hash':
-    historyStore = createHashHistory()
-    break
-  case 'memory':
-    historyStore = createMemoryHistory()
-    break
-  default:
-    historyStore = null
+const getHistory = () => {
+  const options = config()
+  let historyStore
+  switch (options.history) {
+    case 'browser':
+      historyStore = createBrowserHistory()
+      break
+    case 'hash':
+      historyStore = createHashHistory()
+      break
+    case 'memory':
+      historyStore = createMemoryHistory()
+      break
+    default:
+      historyStore = null
+  }
+  return historyStore
 }
 
-export const history = historyStore
+export const history = getHistory()
 
 const sagaMiddleware = createSagaMiddleware()
 
@@ -34,7 +37,11 @@ const createRootReducer =
     ...reducers,
   })
 
+
 const combineMiddleware = () => {
+  const options = config()
+  const history = getHistory()
+
   let middleWare = [
     sagaMiddleware,
   ]
@@ -45,6 +52,8 @@ const combineMiddleware = () => {
   if (Object.prototype.toString.call(options.middleware) === '[object Array]') {
     middleWare = [...middleWare, ...options.middleware]
   }
+
+  console.log('options logger', options.logger)
   if (options.logger) {
     middleWare.push(logger)
   }

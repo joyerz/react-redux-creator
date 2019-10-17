@@ -2,8 +2,6 @@ import { put, call, takeLatest, select, delay } from 'redux-saga/effects'
 import { obj2params, underScoreToCamel, notNullOrUndefiend } from './common'
 import config  from './settings'
 
-const options = config()
-
 // 常规sagas的操作
 const effects = {
   put,
@@ -49,6 +47,9 @@ export default reduxer => (...args) => {
  */
 function* createWatcher(redux, conf) {
   yield takeLatest(redux.types.START, function* ({ payload }) {
+    const options = config()
+    // console.log('react-redux-config', options)
+
     conf = conf || {}
     let { url, data, method, headers = {}, extract = {}, onResult, onAfter, onError, fetch } = conf
 

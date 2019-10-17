@@ -3,15 +3,16 @@ import { Provider } from 'react-redux'
 import { ConnectedRouter } from 'connected-react-router'
 import { sagas, reducers } from './connectSagas'
 import configureStore, { history } from './store'
+import config from './settings'
 
-let store
 export const createStore = (initState = {}) => {
-  store = configureStore(initState, reducers, sagas)
+  const store = configureStore(initState, reducers, sagas)
+  config({ store })
   return store
 }
 
 export default ({ routes, initState = {} }) => {
-  createStore(initState)
+  const store = createStore(initState)
   return (
     <Provider store={store}>
       <ConnectedRouter history={history}>

@@ -6,14 +6,8 @@ export let defaultOptions = {
   history: 'browser', // browser, hash, memory, none
   autoActions: true,
   middleware: [], // middleware
+  store: null,
 }
-
-// export default function config(opts) {
-//   options = {
-//     ...options,
-//     ...opts
-//   }
-// }
 
 const settings = () => {
   let options = defaultOptions
