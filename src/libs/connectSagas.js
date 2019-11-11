@@ -66,7 +66,7 @@ function* createWatcher(redux, conf) {
 
       // data处理
       if (typeof data === 'function') {
-        data = yield data(payload, callbackConfig)
+        data = yield call(data, payload, callbackConfig)
       }
 
       // GET方法下，data合并到url中
