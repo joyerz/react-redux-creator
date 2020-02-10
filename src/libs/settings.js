@@ -2,6 +2,7 @@
 
 export let defaultOptions = {
   logger: true, // redux-logger
+  catchError: true, // redux error console
   fetchMethod: null, // fetch请求
   history: 'browser', // browser, hash, memory, none
   autoActions: true,

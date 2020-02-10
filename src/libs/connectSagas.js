@@ -117,6 +117,8 @@ function* createWatcher(redux, conf) {
       // error handler
       if (onError) {
         yield call(onError, err, payload, callbackConfig)
+      } else if (options.catchError) {
+        yield call(console.log, err, payload, callbackConfig)
       }
     }
   })
