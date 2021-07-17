@@ -1,4 +1,4 @@
-import { put, call, takeLatest, select, delay } from 'redux-saga/effects'
+import { put, call, takeLatest, select } from 'redux-saga/effects'
 import { obj2params, underScoreToCamel, notNullOrUndefiend } from './common'
 import config  from './settings'
 
@@ -10,8 +10,8 @@ const effects = {
 
 // 全局的redux actions
 const allActions = {}
-export let sagas = []
-export let reducers = {}
+export const sagas = []
+export const reducers = {}
 
 // 获取全局的action
 const getAction = (actionName) => allActions[actionName]
