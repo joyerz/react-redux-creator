@@ -6,7 +6,6 @@ import Provider, { createStore } from './libs/provider'
 
 export default {
   buildRedux: connectSagas(buildRedux),
-  // buildListRedux: connectSagas(buildListRedux),
   connect: myConnect,
   Provider,
   config,

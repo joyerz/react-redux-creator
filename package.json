@@ -1,11 +1,12 @@
 {
   "name": "react-redux-creator",
-  "version": "0.3.11",
+  "version": "1.0.0",
   "description": "redux helper to create redux actions & reducers with Immutable(seamless-immutable)",
   "main": "index.js",
   "typings": "index.d.ts",
   "files": [
     "dist",
+    "webpackPlugin",
     "index.d.ts"
   ],
   "scripts": {
@@ -33,9 +34,10 @@
   "homepage": "https://github.com/joyerz/react-redux-creator#readme",
   "dependencies": {
     "connected-react-router": "^6.5.2",
+    "chokidar": "^2.1.8",
     "history": "^4.10.1",
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0",
+    "react": ">=16.9.0",
+    "react-dom": ">=16.9.0",
     "react-redux": "^7.1.1",
     "redux": "^4.0.4",
     "redux-actions": "^2.6.5",
